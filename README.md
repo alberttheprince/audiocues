@@ -89,21 +89,3 @@ local position = exports['audiocues']:GetAudioCuePosition() -- Returns: 'top', '
 -- Set position programmatically (also saves to KVP)
 local success = exports['audiocues']:SetAudioCuePosition('right') -- Returns true if valid position
 ```
-
-## Changelog
-
-### v1.2.0
-- **Fixed ACE permissions** - Now uses proper server-side permission checking
-- Permission results are cached client-side for performance
-- **Position change without toggle** - Using `/audiocues <position>` while active now just moves the UI instead of toggling off
-
-### v1.1.0
-- Added screen position support (top, left, right, bottom)
-- Position preference saved via KVP (remembered across sessions)
-- **Enabled state now persists across sessions** (auto-restores on reconnect)
-- ACE permission check on auto-restore (prevents bypassing server restrictions)
-- Added chat command suggestions
-- Added new exports: `GetAudioCuePosition()`, `SetAudioCuePosition()`
-
-### v1.0.0
-- Initial release
