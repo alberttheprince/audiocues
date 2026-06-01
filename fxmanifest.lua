@@ -3,10 +3,8 @@ game 'gta5'
 
 name 'audiocues'
 description 'Visual notifications for in-game audio events'
-author 'PopcornRP'
-version '1.2.0'
-
-lua54 'yes'
+author 'Popcorn Roleplay: https://discord.gg/popcornroleplay'
+version '1.0.0'
 
 shared_scripts {
     'config.lua',
