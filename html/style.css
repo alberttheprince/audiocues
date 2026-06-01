@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+    overflow: hidden;
+}
+
+#container {
+    --notification-width: 340px;
+    position: fixed;
+    z-index: 9999;
+}
+
+#container.hidden {
+    display: none;
+}
+
+/* ============================================
+   POSITION: TOP (default)
+   ============================================ */
+#container.position-top {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--notification-width);
+}
+
+#container.position-top #notifications {
+    flex-direction: column;
+}
+
+#container.position-top .notification.removing {
+    animation: slideOutRight 0.2s ease-in forwards;
+}
+
+/* ============================================
+   POSITION: BOTTOM
+   ============================================ */
+#container.position-bottom {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--notification-width);
+}
+
+#container.position-bottom #notifications {
+    flex-direction: column-reverse;
+}
+
+#container.position-bottom .notification {
+    animation: slideInUp 0.2s ease-out;
+}
+
+#container.position-bottom .notification.removing {
+    animation: slideOutRight 0.2s ease-in forwards;
+}
+
+/* ============================================
+   POSITION: LEFT
+   ============================================ */
+#container.position-left {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--notification-width);
+}
+
+#container.position-left #notifications {
+    flex-direction: column;
+}
+
+#container.position-left .notification {
+    animation: slideInLeft 0.2s ease-out;
+}
+
+#container.position-left .notification.removing {
+    animation: slideOutLeft 0.2s ease-in forwards;
+}
+
+/* ============================================
+   POSITION: RIGHT
+   ============================================ */
+#container.position-right {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--notification-width);
+}
+
+#container.position-right #notifications {
+    flex-direction: column;
+}
+
+#container.position-right .notification {
+    animation: slideInRight 0.2s ease-out;
+}
+
+#container.position-right .notification.removing {
+    animation: slideOutRight 0.2s ease-in forwards;
+}
+
+/* ============================================
+   INDICATOR STYLING
+   ============================================ */
+#indicator {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 4px 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    width: 100%;
+}
+
+/* Indicator positioning based on container position */
+#container.position-top #indicator,
+#container.position-left #indicator,
+#container.position-right #indicator {
+    top: 0;
+    left: 0;
+}
+
+#container.position-bottom #indicator {
+    bottom: 0;
+    left: 0;
+}
+
+#indicator.flash-on {
+    animation: flashGreen 1s ease-out;
+}
+
+#indicator.flash-off {
+    animation: flashRed 1s ease-out;
+}
+
+@keyframes flashGreen {
+    0% {
+        color: #44ff44;
+        text-shadow: 0 0 10px #44ff44, 0 0 20px #44ff44;
+    }
+    100% {
+        color: rgba(255, 255, 255, 0.25);
+        text-shadow: none;
+    }
+}
+
+@keyframes flashRed {
+    0% {
+        color: #ff4444;
+        text-shadow: 0 0 10px #ff4444, 0 0 20px #ff4444;
+    }
+    100% {
+        color: rgba(255, 255, 255, 0);
+        text-shadow: none;
+    }
+}
+
+/* ============================================
+   NOTIFICATIONS CONTAINER
+   ============================================ */
+#notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* ============================================
+   NOTIFICATION STYLING
+   ============================================ */
+.notification {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    animation: slideIn 0.2s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Severity-based styling */
+.notification.danger {
+    background: rgba(180, 40, 40, 0.9);
+    border-left: 3px solid #ff4444;
+}
+
+.notification.caution {
+    background: rgba(180, 140, 30, 0.95);
+    border-left: 3px solid #ffcc00;
+}
+
+.notification.neutral {
+    background: rgba(40, 40, 40, 0.9);
+    border-left: 3px solid #666666;
+}
+
+.notification-icon {
+    font-size: 16px;
+    min-width: 22px;
+    text-align: center;
+}
+
+.notification-message {
+    flex: 1;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notification-time {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    font-family: monospace;
+    min-width: 55px;
+    text-align: right;
+}
+
+.direction-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+}
+
+.direction-indicator.empty {
+    display: none;
+}
+
+.direction-ring {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1;
+}
+
+.direction-center {
+    fill: rgba(255, 255, 255, 0.5);
+}
+
+.direction-arc {
+    fill: rgba(255, 255, 255, 0.8);
+}
+
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    animation: progress linear forwards;
+}
+
+/* Caution overrides for dark text (WCAG compliance) */
+.notification.caution .notification-message {
+    color: #1a1a1a;
+}
+
+.notification.caution .notification-time {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.notification.caution .direction-ring {
+    stroke: rgba(0, 0, 0, 0.2);
+}
+
+.notification.caution .direction-center {
+    fill: rgba(0, 0, 0, 0.5);
+}
+
+.notification.caution .direction-arc {
+    fill: rgba(0, 0, 0, 0.8);
+}
+
+.notification.caution .notification-progress {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
