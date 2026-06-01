@@ -1,4 +1,4 @@
-# AudioCues
+<img width="799" height="279" alt="image" src="https://github.com/user-attachments/assets/60e691f3-449c-489c-9cc8-ee4291d7b6f5" />
 
 Visual notifications for in-game audio events. Designed for accessibility, allowing players to receive visual cues for sounds they may not be able to hear.
 
