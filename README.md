@@ -2,20 +2,24 @@
 
 Visual notifications for in-game audio events. Designed for accessibility, allowing players to receive visual cues for sounds they may not be able to hear.
 
-## Installation
+Want to support our work? [Come join our RP server](https://discord.gg/popcornroleplay), we're working and releasing resources like this every week to make FiveM a more accessible place!
 
-1. Extract `audiocues` folder to your server's `resources` directory
-2. Add `ensure audiocues` to your server.cfg
-3. Configure `config.lua` to your preferences
+### Features:
 
-## Usage
+- Event distance and direction and cooldowns
+- Notification duration
+- Timestamp visibility
+- Custom messages for each event type
+
+
+## How-to-Use:
 
 Players can toggle audio cues with the command:
 ```
 /audiocues [position]
 ```
 
-### Screen Positions
+### Screen Positions:
 
 Audio cue notifications can be displayed in four different positions on screen:
 
@@ -29,7 +33,7 @@ Audio cue notifications can be displayed in four different positions on screen:
 
 **Note:** When audio cues are already active, providing a position argument will only change the position without toggling off. Use `/audiocues` without arguments to toggle off.
 
-### Persistence
+### Persistence:
 
 Both the **position** and **enabled state** are saved via KVP and persist across sessions:
 - If you enable audio cues and disconnect, they will automatically re-enable when you reconnect
@@ -85,14 +89,6 @@ local position = exports['audiocues']:GetAudioCuePosition() -- Returns: 'top', '
 -- Set position programmatically (also saves to KVP)
 local success = exports['audiocues']:SetAudioCuePosition('right') -- Returns true if valid position
 ```
-
-## Configuration
-
-See `config.lua` for all available options including:
-- Event distances and cooldowns
-- Notification duration
-- Timestamp visibility
-- Custom messages for each event type
 
 ## Changelog
 
