@@ -4,6 +4,8 @@ Visual notifications for in-game audio events. Designed for accessibility, allow
 
 Want to support our work? [Come join our RP server](https://discord.gg/popcornroleplay), we're working and releasing resources like this every week to make FiveM a more accessible place!
 
+Video Preview: https://youtu.be/dVPxiUpQQ0I
+
 ### Features:
 
 - Event distance and direction and cooldowns
